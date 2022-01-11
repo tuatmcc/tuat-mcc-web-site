@@ -1,13 +1,34 @@
 <template>
   <v-app>
-    <Nuxt />
+    <v-app>
+      <v-navigation-drawer v-model="drawer" app>
+        <navigation-menu
+      /></v-navigation-drawer>
+      <v-app-bar color="primary" dark app :value="$vuetify.breakpoint.mobile">
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>Vuetify</v-toolbar-title>
+      </v-app-bar>
+      <v-main>
+        <Nuxt />
+      </v-main>
+    </v-app>
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {}
+<script lang="ts">
+import Vue from 'vue'
+import navigationMenu from '~/components/navigationMenu.vue'
+
+export type DataType = { drawer: boolean | null }
+export default Vue.extend({
+  components: {
+    navigationMenu,
   },
-}
+  data(): DataType {
+    return {
+      drawer: null,
+    }
+  },
+})
 </script>
+<style lang="scss" scoped></style>
