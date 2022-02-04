@@ -30,7 +30,7 @@ export default Vue.extend({
         { name: 'トップ', color: '#FFCCCC', href: '/' },
         { name: 'MCCについて', color: '#00FF00', href: '/about' },
         { name: '活動内容', color: '#33FFFF', href: '/works' },
-        { name: '活動報告', color: '#0099FF', href: '/report' },
+        { name: '活動報告', color: '#0099FF', href: '/news' },
         { name: '新入部員募集', color: ' #0000FF', href: '/recruit' },
         { name: 'お役立ちリンク', color: ' #333399', href: '/links' },
         // #CC00CC
