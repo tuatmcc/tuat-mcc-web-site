@@ -4,12 +4,13 @@
       <h1 class="title-mcc">農工大MCCのホームページ</h1>
     </div>
     <div class="grid">
-      <div>
+      <div class="left">
         <v-img
-          src="http://abehiroshi.la.coocan.jp/abe-top-20190328-2.jpg"
+          width="100%"
+          src="https://mononichi.com/worksimg/lan.png"
         ></v-img>
       </div>
-      <div>
+      <div class="right">
         <News />
       </div>
     </div>
@@ -30,7 +31,20 @@ export default Vue.extend({
   text-align: center;
 }
 .grid {
+  .left {
+    max-width: 500px;
+    margin: auto;
+    min-width: 0;
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+  }
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  grid-template-columns: 1fr minmax(400px, 1fr);
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
