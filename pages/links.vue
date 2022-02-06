@@ -17,7 +17,7 @@
 <script lang="ts">
 import Vue from 'vue'
 export type DataType = {
-  subjects: { name: string; href: string }[]
+  links: { title: string; to: string }[]
 }
 export default Vue.extend({
   components: {},
