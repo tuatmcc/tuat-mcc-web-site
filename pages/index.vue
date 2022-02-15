@@ -1,14 +1,27 @@
 <template>
   <div>
-    <h1 class="title-mcc">農工大MCCのホームページ</h1>
-    <v-btn>aa</v-btn>
+    <div>
+      <h1 class="title-mcc">農工大MCCのホームページ</h1>
+    </div>
+    <div class="grid">
+      <div class="left">
+        <v-img
+          width="100%"
+          src="https://mononichi.com/worksimg/lan.png"
+        ></v-img>
+      </div>
+      <div class="right">
+        <News />
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import Vue from 'vue'
+import News from '~/components/top/news.vue'
 
 export default Vue.extend({
-  components: {},
+  components: { News },
 })
 </script>
 
@@ -16,5 +29,22 @@ export default Vue.extend({
 .title-mcc {
   font-size: 32px;
   text-align: center;
+}
+.grid {
+  .left {
+    max-width: 500px;
+    margin: auto;
+    min-width: 0;
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+  }
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr minmax(400px, 1fr);
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

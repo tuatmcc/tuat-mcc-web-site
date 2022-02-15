@@ -15,5 +15,8 @@
   "stylelint.enable": true,
   "css.validate": false,
   "scss.validate": false,
-  "vetur.validation.style": false
+  "vetur.validation.style": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }
