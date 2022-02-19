@@ -1,4 +1,5 @@
 <template>
+  <!-- container -->
   <div class="box">
     <Card
       v-for="(article, index) in articles"
@@ -17,7 +18,7 @@ import Card from '~/components/news/newsCard.vue'
 export default Vue.extend({
   components: { Card },
   async asyncData({ $content }) {
-    const query = await $content('news').limit(15)
+    const query = await $content('works').limit(15)
     const articles = await query.fetch()
     return { articles }
   },
