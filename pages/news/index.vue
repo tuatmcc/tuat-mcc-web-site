@@ -21,7 +21,6 @@ export default Vue.extend({
   async asyncData({ $content }) {
     const query = await $content('news').limit(15)
     const articles = await query.fetch()
-    console.log('a:', articles)
     return { articles }
   },
 })
