@@ -1,5 +1,4 @@
 <template>
-  <!-- container -->
   <div class="box">
     <Card
       v-for="(article, index) in articles"
