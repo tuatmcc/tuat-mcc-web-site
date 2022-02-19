@@ -4,7 +4,7 @@
       {{ article.title || '' }}
     </h1>
     <div class="">
-      <nuxt-content :document="article" />
+      <nuxt-content class="markdown-body" :document="article" />
     </div>
   </article>
 </template>

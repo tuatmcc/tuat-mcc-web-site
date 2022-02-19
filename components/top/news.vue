@@ -4,17 +4,16 @@
       <h3 class="text-center">★★★ 最新情報 ★★★</h3>
     </div>
     <v-divider />
-    <div>
-      <h4>・ドラマ</h4>
-      <p>2023年 大河ドラマ(第62作)New!</p>
-      <p>日曜劇場「DCU」New! 2022年1月スタート</p>
+    <h4>・活動報告</h4>
+    <div v-for="(article, index) in articles[0]" :key="index">
+      <news-card :path="article.path" :title="article.title" />
     </div>
     <v-divider />
     <div>
-      <h4>・映画</h4>
-      <p>2023年 大河ドラマ(第62作)New!</p>
-      <p>日曜劇場「DCU」New! 2022年1月スタート</p>
-      <news-card />
+      <h4>・活動内容</h4>
+      <div v-for="(article, index) in articles[1]" :key="index">
+        <news-card :path="article.path" :title="article.title" />
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +23,12 @@ import newsCard from '~/components/top/card.vue'
 
 export default Vue.extend({
   components: { newsCard },
+  props: {
+    articles: {
+      type: Array,
+      required: true,
+    },
+  },
 })
 </script>
 

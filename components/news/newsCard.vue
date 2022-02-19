@@ -3,7 +3,7 @@
     <v-card width="100%" height="100%" class="v-card">
       <v-card-title>{{ title }}</v-card-title>
       <v-card-subtitle
-        ><time>{{ date }}</time></v-card-subtitle
+        ><time>{{ createdAt }}</time></v-card-subtitle
       >
 
       <v-card-text>
@@ -29,10 +29,6 @@ export default Vue.extend({
       type: String,
       required: true,
     },
-    date: {
-      type: String,
-      required: true,
-    },
     category: {
       type: String,
       required: true,
@@ -45,6 +41,10 @@ export default Vue.extend({
       type: String,
       required: false,
       default: '',
+    },
+    createdAt: {
+      type: String,
+      required: true,
     },
   },
 })

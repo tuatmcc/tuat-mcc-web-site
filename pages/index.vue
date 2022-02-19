@@ -11,20 +11,31 @@
         ></v-img>
       </div>
       <div class="right">
-        <News />
+        <News :articles="articles" />
       </div>
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import Vue from 'vue'
 import News from '~/components/top/news.vue'
-
 export default Vue.extend({
   components: { News },
+  async asyncData({ $content }) {
+    // ニュースと作品の二次元配列を作る
+    const folder = ['news', 'works']
+    const articles = await Promise.all(
+      folder.map(async (el) => {
+        const query = await $content(el).limit(5)
+        const article = await query.fetch()
+        return article
+      })
+    )
+    return { articles }
+  },
 })
 </script>
-
 <style lang="scss" scoped>
 .title-mcc {
   font-size: 32px;
