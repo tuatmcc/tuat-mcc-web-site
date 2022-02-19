@@ -20,7 +20,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import newsCard from '~/components/top/newsCard.vue'
+import newsCard from '~/components/top/card.vue'
 
 export default Vue.extend({
   components: { newsCard },
