@@ -3,7 +3,7 @@
     <v-card width="100%" height="100%" class="v-card">
       <v-card-title>{{ title }}</v-card-title>
       <v-card-subtitle
-        ><time>{{ createdAt }}</time></v-card-subtitle
+        ><time>{{ date }}</time></v-card-subtitle
       >
 
       <v-card-text>
@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import dateFormat from '~/plugins/date'
 // import Tag from '~/components/Tag'
 export default Vue.extend({
   props: {
@@ -45,6 +46,11 @@ export default Vue.extend({
     createdAt: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    date() {
+      return dateFormat(new Date(this.createdAt))
     },
   },
 })
