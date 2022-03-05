@@ -18,3 +18,12 @@ $ npm install
 $ npm run dev
 
 ```
+
+## 記事更新方法
+
+[content ディレクトリ](https://github.com/tuatmcc/tuat-mcc-web-site/tree/develop/content)内にマークダウンの記事が入っているので、編集します。
+
+1. 本リポジトリを clone
+1. ブランチを切る。めんどくさかったら develop ブランチで良い
+1. マークダウンを追加・編集
+1. develop->master のプルリクエストを立てて、本番環境に反映する
