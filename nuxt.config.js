@@ -24,6 +24,8 @@ export default {
           '東京農工大学MCC 公式WEBサイトです。マイコンやコンピューターを使ったサークルです。',
       },
       { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'og:image', property: 'og:image', content: '/logo.png' },
+      { name: 'twitter:card', content: 'summary' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
