@@ -5,10 +5,7 @@
     </div>
     <div class="grid">
       <div class="left">
-        <v-img
-          width="100%"
-          src="https://mononichi.com/worksimg/lan.png"
-        ></v-img>
+        <v-img width="100%" src="/logo.svg"></v-img>
       </div>
       <div class="right">
         <News :articles="articles" />
