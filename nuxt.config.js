@@ -9,15 +9,20 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - tuat-mcc-web-site',
-    title: 'tuat-mcc-web-site',
+    titleTemplate: '%s | 東京農工大学MCC 公式サイト',
+    title: '東京農工大学MCC 公式サイト',
     htmlAttrs: {
       lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          '東京農工大学MCC 公式WEBサイトです。マイコンやコンピューターを使ったサークルです。',
+      },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
