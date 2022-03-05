@@ -4,7 +4,7 @@
       <v-navigation-drawer v-model="drawer" app>
         <navigation-menu
       /></v-navigation-drawer>
-      <v-app-bar color="primary" dark app :value="$vuetify.breakpoint.mobile">
+      <v-app-bar color="blue-grey darken-4" dark app :value="$vuetify.breakpoint.mobile">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <!-- <v-toolbar-title></v-toolbar-title> -->
       </v-app-bar>
