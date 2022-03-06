@@ -5,11 +5,13 @@ img: first-blog-post.jpg
 category: dev
 ---
 
+2022年2月18日に部内でDiscord Botの開発チュートリアルを行いました。当時の資料を元に加筆・修正を加えた物を公開します。
+
 # 近頃のDiscord Bot界隈
 
 最初に、近頃のDiscord Bot開発者界隈を取り巻く状況について軽く触れておきます。
 
-## 昔のDiscord Bot界隈
+## むかし
 
 昔はBot開発用の2大ライブラリとして、Python用の[discord.py](https://discordpy.readthedocs.io/en/latest/)とNode.js用の[discord.js](https://discord.js.org/)がありました。
 
@@ -36,6 +38,7 @@ Python界隈がこの有様(だった)ので、このチュートリアルでは
 - Node.js
   - サーバーサイドJavaScript環境(ブラウザではなくサーバー上でJSを動かすための環境)の一種です。Discord BotはNode.js上で動きます。
   - パッケージマネージャとして`npm`という物を使います。
+  - 最新のdiscord.js(v13)を使うためには、Node v16.6.0以降が必要です。
   - [公式サイト](https://nodejs.org/ja/)
 - TypeScript
   - JavaScriptを静的型付けライクに拡張した言語です。静的型付け最高！
@@ -53,7 +56,7 @@ Python界隈がこの有様(だった)ので、このチュートリアルでは
 
 適当な名前のディレクトリを作ってください。
 
-次に、ターミナルでディレクトリに移動し、`npm init`を実行してください。色々聞かれますが全てEnterを押せばいいです。
+次に、ターミナルでディレクトリに移動し、`npm init`を実行してください。色々聞かれますが、とりあえず全てEnterを押せばいいです。
 
 `package.json`が作成されていることを確認してください。
 
@@ -97,7 +100,7 @@ npm install --save discord.js dotenv typescript @types/node@16 ts-node tsconfig-
 
 これにより、`npm start`で`npx ts-node --files -r tsconfig-paths/register src/index.ts`を実行できるようになりました。
 
-`ts-node`は、`.ts`ファイルを事前コンパイル無しで直接実行するためのパッケージです(正確にはJITコンパイルされているようです)。TypeScriptのコードを走らせるには「tscでコンパイル」→「nodeでjsを実行」 の2ステップを要していましたが、`ts-node`を使うことで1ステップに抑えることができます。
+`ts-node`は、`.ts`ファイルを事前コンパイル無しで直接実行するためのパッケージです(正確にはJITコンパイルしているようです)。TypeScriptのコードを走らせるには「tscでコンパイル」→「Nodeでjsを実行」 の2ステップを要していましたが、`ts-node`を使うことで1ステップに抑えることができます。
 
 いろいろ引数がついていますが、ここでは説明を省略します。気になる方は`tsconfig-paths`などで検索してください。
 
@@ -121,17 +124,21 @@ console.log("Hello World!")
 
 ## Botをサーバーに追加する
 
-Botをサーバーに追加していきます。
-
-今回は「[MCC]Bot実験室」というサーバーを用意しています。講習会中に招待リンクを貼っておくので参加してください。(Bot招待にはサーバーの管理者権限が必要なため、これも一緒に付与します)
+Botをサーバーに追加していきます。最初にテスト用のサーバーを立てておいてください。
 
 ### Botの登録
 
 まずはBotをDiscordに登録します。
 
 1. Discordにログインした状態で、Discord Developer Portalの[Application](https://discord.com/developers/applications/)ページに移動してください。
-1. 右上の`New Application`をクリックして、いい感じの名前をつけて`Create`してください。
-1. 左のメニューから`Bot`をクリックして、`Add Bot -> Yes, do it!`をクリックしてください。`A wild bot has appeared!`みたいなメッセージが表示されればOKです。
+2. 右上の`New Application`をクリックして、いい感じの名前をつけて`Create`してください。
+
+![](create_app.png)
+
+
+3. 左のメニューから`Bot`をクリックして、`Add Bot -> Yes, do it!`をクリックしてください。`A wild bot has appeared!`みたいなメッセージが表示されればOKです。
+
+![](add_bot.png)
 
 ### Botをサーバーに招待
 
@@ -139,8 +146,11 @@ Botをサーバーに追加していきます。
 
 1. 左メニューから`OAuth2 -> URL Generator`を開いてください。
 2. `SCOPES`の中の`bot`, `applications.commands`にチェックを入れてください。
-3. `BOT PERMISSIONS`の中の`Send Messagesにチェックを入れてください。これにより、Botにメッセージ送信権限が付与されます。他の権限が必要な場合は適宜チェックを増やしてください。
-4. `Generated URL`をコピーして、Webブラウザに貼り付けてください。「[MCC]Bot実験室」サーバーを選択して、「はい」などのボタンを押してください。
+3. `BOT PERMISSIONS`の中の`Send Messages`にチェックを入れてください。これにより、Botにメッセージ送信権限が付与されます。他の権限が必要な場合は適宜チェックを増やしてください。
+
+![](permission.png)
+
+4. 下の方にある`Generated URL`をコピーして、Webブラウザに貼り付けてください。事前に作成したサーバーを選択して、「はい」などのボタンを押してください。
 5. Discordクライアント上で、サーバーにBotが追加されたことを確認してください。
 
 
@@ -194,6 +204,8 @@ client.once("ready", () => {
 client.login(process.env.TOKEN);
 ```
 
+コードの中身を説明していきます。
+
 #### インポート
 
 使用するクラスなどをインポートします。
@@ -211,7 +223,7 @@ client.login(process.env.TOKEN);
 #### ログイン完了時に実行するコールバック関数を登録
 
 - ログイン完了時に`ready`イベントが発火されます。その時に実行する関数(コールバック関数)を登録しておきます。
-- `()=>{...}`という表記は、JS・TS特有の「アロー関数」という物です。
+- `()=>{...}`という表記は、JS・TS特有の「アロー関数」という物です。(詳しくはググってね)
 
 #### ログイン
 
@@ -232,7 +244,7 @@ client.login(process.env.TOKEN);
 
 この章では、スラッシュコマンドの実装を行います。
 
-主に[このページ](https://qiita.com/gaato/items/55b32bc4777905ac162a#%E3%82%A8%E3%83%95%E3%82%A7%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B9)を参考にしています。
+この記事を参考にしています: [discord.js でスラッシュコマンド（Slash commands）を使う - Qiita](https://qiita.com/gaato/items/55b32bc4777905ac162a)
 
 ## 2種類のスラッシュコマンド
 
@@ -241,7 +253,7 @@ client.login(process.env.TOKEN);
 - ギルドコマンド: 特定のサーバーを指定して登録するコマンド。
 - グローバルコマンド: Botが参加している全てのサーバーに登録されるコマンド。
 
-グローバルコマンドは、登録後実際に使えるようになるまで1時間ほどかかるようです。このため、本章ではギルドコマンドを使用します。
+グローバルコマンドは、登録後実際に使えるようになるまで1時間ほどかかるようです。このため、本チュートリアルではギルドコマンドを使用します。
 
 ## 環境変数の設定
 
@@ -250,7 +262,12 @@ client.login(process.env.TOKEN);
 サーバーIDは次の方法で取得することができます。
 
 1. Discordアプリの設定画面を開き、「詳細設定」の「開発者モード」をオンにしておきます。
+
+![開発者モード](devmode.png)
+
 2. サーバーアイコン上で右クリックして、「IDをコピー」を選択します。サーバーIDがクリップボードにコピーされます。
+
+![IDをコピー](copy_server_id.png)
 
 `.env`に次の項目を追記してください。`<サーバーID>`は実際の値に置き換えてください。
 ```
@@ -279,8 +296,6 @@ declare namespace NodeJS {
 ### コマンドを実装する
 
 実際にコマンドを作っていきます。次のコードを参考にして、`ready`イベントのコールバックを編集し、`interactionCreate`イベントのコールバックを追加してください。`async`キーワードが新しく加わっていることに注意してください。
-
-同一サーバー内に同じ名前のコマンドを複数登録しようとすると多分良くないので、コマンド名(コード例の`ping`の部分)は適当に変えてください。処理内容もいい感じに変えてしまって大丈夫です。
 
 ```typescript
 import { ApplicationCommandData, Client, ClientOptions } from "discord.js"; // インポート部分が変わっています
@@ -391,11 +406,7 @@ if (interaction.commandName === "ping") {
 
 詳しくはこのページが参考になります: [replyとdeferReplyの違い - Discord.js Japan User Group](https://scrapbox.io/discordjs-japan/reply%E3%81%A8deferReply%E3%81%AE%E9%81%95%E3%81%84)
 
-# その他いろいろ
-
-Botの実装とは関係ない話をしていきます。
-
-## 分からないことがあったら
+# 分からないことがあったら
 
 分からないことがある時は次のサイトが頼りになります。
 
@@ -404,30 +415,6 @@ Botの実装とは関係ない話をしていきます。
 - [Discord.js Japan User Group (Scrapbox)](https://scrapbox.io/discordjs-japan/)
   - 日本語Wiki。やりたいことをここで検索すれば大体出てくる説があります。
 
-## 実運用
+# おわり
 
-実際にBotを動かす際、サーバーをどうやって用意するかの話です。
-
-### PC(Raspberry Pi含む)
-
-- ハードウェアが用意できる場合はお手軽です。
-- PCを占有することになるため大変です。
-- PCを常時稼働させていると発火リスクが心配になります。
-- TypeScriptをコンパイルする際にメモリをかなり消費するため、特にRaspberry Piでは注意が必要です。
-  - 入退室Botの[この項目](https://github.com/tuatmcc/mcc_nfc_room_manager#%E8%B5%B7%E5%8B%95%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E9%81%95%E3%81%84%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)のように、型チェックの省略が必要になったりします。
-- Raspberry Piのストレージは信頼性が低く、頻繁にデータが飛ぶ印象があります。
-
-### Google Compute Engineなどのサービス
-
-物理デバイスと連携させたい(e.g. NFCリーダー)などの理由がなければ、こちらを選んだ方がいい気がします。
-
-- ハードウェアを用意する必要がありません。
-- インスタンスの立ち上げなどが面倒です。
-- 維持費がかかります。
-  - GCEには無料枠があるので、その範囲で頑張る方法もあります。
-
-## データベース
-
-データを保存したくなった場合はデータベースの選定が必要になります。
-
-ローカルのデータベースを使うとデータが吹っ飛ぶリスクがあるため(特にRaspberry Pi環境)、入退室BotではデータベースにDBaaS(DataBase as a Service)の[MongoDB Atlas](https://www.mongodb.com/atlas/database)を使用しています。部内Botで使用する分には十分な無料枠があります。
+スラッシュコマンドに対応したDiscord Botを作りました。後はいろいろ工夫して頑張ってください。
