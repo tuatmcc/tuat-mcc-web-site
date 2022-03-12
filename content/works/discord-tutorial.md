@@ -5,7 +5,7 @@ img: first-blog-post.jpg
 category: dev
 ---
 
-2022年2月18日に部内でDiscord Botの開発チュートリアルを行いました。当時の資料を元に加筆・修正を加えた物を公開します。
+こんにちは。B3のArcです。2022年2月18日に部内でDiscord Botの開発チュートリアルを行いました。当時の資料を元に加筆・修正を加えた物を公開してみます。
 
 # 近頃のDiscord Bot界隈
 
@@ -133,12 +133,12 @@ Botをサーバーに追加していきます。最初にテスト用のサー�
 1. Discordにログインした状態で、Discord Developer Portalの[Application](https://discord.com/developers/applications/)ページに移動してください。
 2. 右上の`New Application`をクリックして、いい感じの名前をつけて`Create`してください。
 
-![](create_app.png)
+<img src="/works/discord-tutorial/create_app.png">
 
 
 3. 左のメニューから`Bot`をクリックして、`Add Bot -> Yes, do it!`をクリックしてください。`A wild bot has appeared!`みたいなメッセージが表示されればOKです。
 
-![](add_bot.png)
+<img src="/works/discord-tutorial/add_bot.png">
 
 ### Botをサーバーに招待
 
@@ -148,7 +148,7 @@ Botをサーバーに追加していきます。最初にテスト用のサー�
 2. `SCOPES`の中の`bot`, `applications.commands`にチェックを入れてください。
 3. `BOT PERMISSIONS`の中の`Send Messages`にチェックを入れてください。これにより、Botにメッセージ送信権限が付与されます。他の権限が必要な場合は適宜チェックを増やしてください。
 
-![](permission.png)
+<img src="/works/discord-tutorial/permission.png">
 
 4. 下の方にある`Generated URL`をコピーして、Webブラウザに貼り付けてください。事前に作成したサーバーを選択して、「はい」などのボタンを押してください。
 5. Discordクライアント上で、サーバーにBotが追加されたことを確認してください。
@@ -263,11 +263,11 @@ client.login(process.env.TOKEN);
 
 1. Discordアプリの設定画面を開き、「詳細設定」の「開発者モード」をオンにしておきます。
 
-![開発者モード](devmode.png)
+<img src="/works/discord-tutorial/devmode.png">
 
-2. サーバーアイコン上で右クリックして、「IDをコピー」を選択します。サーバーIDがクリップボードにコピーされます。
+1. サーバーアイコン上で右クリックして、「IDをコピー」を選択します。サーバーIDがクリップボードにコピーされます。
 
-![IDをコピー](copy_server_id.png)
+<img src="/works/discord-tutorial/copy_server_id.png">
 
 `.env`に次の項目を追記してください。`<サーバーID>`は実際の値に置き換えてください。
 ```
@@ -417,4 +417,4 @@ if (interaction.commandName === "ping") {
 
 # おわり
 
-スラッシュコマンドに対応したDiscord Botを作りました。後はいろいろ工夫して頑張ってください。
+スラッシュコマンドに対応したDiscord Botを作りました。後はいろいろ工夫して頑張ってください(雑)。
