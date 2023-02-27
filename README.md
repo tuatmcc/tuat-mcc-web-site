@@ -1,3 +1,9 @@
+**This is an old project. The latest Homepage is in the link below.**
+
+**これは古いプロジェクトです。最新のホームページは以下リンクにあります。**
+
+<https://github.com/tuatmcc/mcc-website>
+
 # 東京農工大学 MCC のホームページ
 
 農工大 マイクロコンピューターサークルの WEB サイトです。
