@@ -1,6 +1,7 @@
-**This is an old project. The latest Homepage is in the link below.**
 
-**これは古いプロジェクトです。最新のホームページは以下リンクにあります。**
+**This is an old project. The latest Homepage's repo is in the link below.**
+
+**これは古いプロジェクトです。最新のホームページのリポジトリは以下リンクにあります。**
 
 <https://github.com/tuatmcc/mcc-website>
 
@@ -8,6 +9,9 @@
 
 農工大 マイクロコンピューターサークルの WEB サイトです。
 https://www.tuatmcc.com/
+
+![screenshot](https://user-images.githubusercontent.com/84656786/221634518-e646b4d9-bb18-497e-9d91-bcf4fc575747.png)
+
 
 ## 方針
 
