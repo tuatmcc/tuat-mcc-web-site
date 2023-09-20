@@ -1,9 +1,4 @@
 
-**This is an old project. The latest Homepage's repo is in the link below.**
-
-**これは古いプロジェクトです。最新のホームページのリポジトリは以下リンクにあります。**
-
-<https://github.com/tuatmcc/mcc-website>
 
 # 東京農工大学 MCC のホームページ
 
